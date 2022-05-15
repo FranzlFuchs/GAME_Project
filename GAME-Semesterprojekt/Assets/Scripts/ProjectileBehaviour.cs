@@ -8,39 +8,40 @@ public class ProjectileBehaviour : MonoBehaviour
     // Start is called before the first frame update
 
     public float speed = 40;
-    public GameObject player;
-    public PlayerShoot script;
+    public string playerOrigin;
+
+
 
     public float impulsStrength;
 
     void Start()
     {
-        script = GetComponent<PlayerShoot>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.Translate(Vector3.forward * Time.deltaTime * speed);
-
-
     }
 
     private void OnTriggerEnter(Collider other)
     {
+
+
         if (other.CompareTag("Player"))
-        {           
-            Rigidbody otherRb = other.GetComponent<Rigidbody>();
+        {
+            if (playerOrigin != other.gameObject.GetComponent<PlayerConfig>().playerNumber)
 
-            otherRb.AddForce(gameObject.transform.forward * impulsStrength, ForceMode.Impulse);  
+            {
+                Rigidbody otherRb = other.GetComponent<Rigidbody>();
 
-            Debug.Log(gameObject.transform.forward);
+                otherRb.AddForce(gameObject.transform.forward * impulsStrength, ForceMode.Impulse);
 
-            Destroy(gameObject);
+                Debug.Log(gameObject.transform.forward);
+
+                Destroy(gameObject);
+            }
         }
-
     }
-
-    
-
 }

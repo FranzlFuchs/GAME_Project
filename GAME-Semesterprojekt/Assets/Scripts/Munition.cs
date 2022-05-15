@@ -54,7 +54,7 @@ public class Munition : MonoBehaviour
 
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<PlayerShootAll>().Reload();
+            other.gameObject.GetComponent<PlayerShoot>().Reload();
             Destroy(gameObject);
         }
     }

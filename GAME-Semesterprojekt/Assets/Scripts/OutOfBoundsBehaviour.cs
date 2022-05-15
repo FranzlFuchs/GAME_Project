@@ -5,11 +5,13 @@ using UnityEngine;
 public class OutOfBoundsBehaviour : MonoBehaviour
 {
     // Start is called before the first frame update
+
+
     private float zBound = 50;
     private float xBound = 50;
-    private float yBound = -30;
+  
     void Start()
-    {
+    {       
 
     }
 
@@ -32,9 +34,6 @@ public class OutOfBoundsBehaviour : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if (transform.position.y < yBound)
-        {
-            Destroy(gameObject);
-        }
+        
     }
 }

@@ -41,16 +41,16 @@ public class MunitionSpawner : MonoBehaviour
     {
 
         int ranPosMunition = Random.Range(0, Munition.Length);
-        Instantiate(Munition[ranPosMunition], RandomSpawnPosition(), Munition[ranPosMunition].transform.rotation);
-        //RECURSION!
+        if (GameManager.GameIsActive)
+        {
+            //RECURSION!
+            Instantiate(Munition[ranPosMunition], RandomSpawnPosition(), Munition[ranPosMunition].transform.rotation);
+        }
 
         //Abbruchbedingung
         if (true)
         {
             Invoke("SpawnRandomMunition", Random.Range(0, Munition[ranPosMunition].SpawnIntervalNextMunition));
         }
-
-
-
     }
 }
