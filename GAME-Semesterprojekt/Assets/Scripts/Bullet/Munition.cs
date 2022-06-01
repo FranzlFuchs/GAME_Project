@@ -5,7 +5,7 @@ using Enums;
 public abstract class Munition : MonoBehaviour, IMunition
 {
     public BulletType bulletType;
-    public float TimeToLive;
+    public float TimeToLive;    
     public float SpawnIntervalNextMunition;
     public Color AmmoMarkerColor;
 
@@ -16,9 +16,7 @@ public abstract class Munition : MonoBehaviour, IMunition
     private Renderer _renderer;
     void Start()
     {
-        Debug.Log("Start");
-
-
+       
         _blinkInterval = ((TimeToLive - (TimeToLive * _ratioTimeBlink)) / _numBlinks) / 2;
         _renderer = GetComponent<Renderer>();
         _renderer.enabled = true;

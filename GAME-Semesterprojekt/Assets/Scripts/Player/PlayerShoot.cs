@@ -8,6 +8,7 @@ public class PlayerShoot : MonoBehaviour
     public GameObject Projectile;
     public GameObject ammoMarker;
     public float impulsStrength;
+    public int Charge;
     private Rigidbody playerRb;
 
     public bool HasAmmo;
@@ -45,7 +46,19 @@ public class PlayerShoot : MonoBehaviour
     {
         if (HasAmmo)
         {
-            Projectile.GetComponent<Projectile>().Shoot(gameObject);
+            if (Charge > 0)
+            {
+                Projectile.GetComponent<Projectile>().Shoot(gameObject);
+                Charge--;
+
+            }
+
+            if (Charge == 0)
+            {
+
+                HasAmmo = false;
+                ammoMarker.SetActive(false);
+            }
         }
     }
 
@@ -55,10 +68,10 @@ public class PlayerShoot : MonoBehaviour
         if (!HasAmmo)
         {
             HasAmmo = true;
-            gameObject.GetComponent<PlayerShoot>().Projectile = FindObjectOfType<MunitionDictionary>().ProjectilesDictionary[munition.GetComponent<Munition>().bulletType];
+            Projectile = FindObjectOfType<MunitionDictionary>().ProjectilesDictionary[munition.GetComponent<Munition>().bulletType];
+            Charge = Projectile.GetComponent<Projectile>().Charge;
 
             SetAmmoMarkerColor(munition.GetComponent<Munition>().AmmoMarkerColor);
-
             ammoMarker.SetActive(true);
         }
 

@@ -3,17 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StandardProjectile : Projectile
-{  
+{
 
-    
-    public override void Shoot(GameObject player)
-    {
-        //Projektil weiß wer es geschossen hat, check auf friendly fire bei Ontrigger Enter
-        player.GetComponent<PlayerShoot>().HasAmmo = false;
-        player.GetComponent<PlayerShoot>().ammoMarker.SetActive(false);
-        PlayerOrigin = player.GetComponent<PlayerConfig>().playerNumber;
-        Instantiate(gameObject, player.transform.position, player.transform.rotation);
-    }
 
     public override void Fly()
     {
@@ -27,5 +18,12 @@ public class StandardProjectile : Projectile
         Destroy(gameObject);
     }
 
-   
+    public override void Shoot(GameObject player)
+    {
+        //Projektil weiß wer es geschossen hat, check auf friendly fire bei Ontrigger Enter
+        GameObject newProjectile = Instantiate(gameObject, player.transform.position, player.transform.rotation);
+        newProjectile.GetComponent<Projectile>().PlayerOrigin = player.GetComponent<PlayerConfig>().playerNumber;
+    }
+
+
 }

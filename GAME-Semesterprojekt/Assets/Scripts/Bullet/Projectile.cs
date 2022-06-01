@@ -8,7 +8,7 @@ public abstract class Projectile : MonoBehaviour, IProjectile
     public float speed;
     public float impulsStrength;
     public string PlayerOrigin;
-    public int charge;
+    public int Charge;
 
     public abstract void Shoot(GameObject player);
     public abstract void Fly();
