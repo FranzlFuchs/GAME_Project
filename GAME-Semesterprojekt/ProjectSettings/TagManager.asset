@@ -7,6 +7,7 @@ TagManager:
   - Munition
   - Player2
   - Player1
+  - TableWare
   layers:
   - Default
   - TransparentFX

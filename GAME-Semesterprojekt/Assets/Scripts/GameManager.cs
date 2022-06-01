@@ -7,23 +7,37 @@ using TMPro;
 public class GameManager : MonoBehaviour
 
 {
-
-
     public static bool GameIsActive;
-    public Button StartGameButton;
+    public Button StartGameRandomButton;
+    public Button StartGameFixedButton;
     public Button RestartGameButton;
+    public PlayerSpawnPositions PlayerSpawner;
     public TextMeshProUGUI winnerText;
+    public TextMeshProUGUI StartgameText;
     public List<GameObject> Players;
     private List<GameObject> PlayersAlive;
+
+    public void SpawnPlayersFixed()
+    {
+        GetComponent<PlayerSpawnPositions>().SpawnFixed();
+        StartGame();
+    }
+
+    public void SpawnPlayersRandom()
+    {
+        GetComponent<PlayerSpawnPositions>().SpawnRandom();
+        StartGame();
+    }
 
     public void StartGame()
     {
         PlayersAlive = Players;
-        StartGameButton.gameObject.SetActive(false);
+        StartGameFixedButton.gameObject.SetActive(false);
+        StartGameRandomButton.gameObject.SetActive(false);
         RestartGameButton.gameObject.SetActive(false);
         winnerText.gameObject.SetActive(false);
+        StartgameText.gameObject.SetActive(false);
         GameIsActive = true;
-
     }
     public void RestartGame()
     {
@@ -31,8 +45,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void PlayerDied(GameObject playerDead)
-    {
-        Debug.Log(PlayersAlive.Count);
+    {        
         PlayersAlive.Remove(playerDead);
 
         if (PlayersAlive.Count == 1)
@@ -40,8 +53,6 @@ public class GameManager : MonoBehaviour
             GameOver(PlayersAlive[0]);
         }
     }
-
-
 
     public void GameOver(GameObject winner)
     {

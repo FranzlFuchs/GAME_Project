@@ -7,8 +7,8 @@ public class OutOfBoundsBehaviour : MonoBehaviour
     // Start is called before the first frame update
 
 
-    private float zBound = 50;
-    private float xBound = 50;
+    private float zBound = 40;
+    private float xBound = 40;
   
     void Start()
     {       

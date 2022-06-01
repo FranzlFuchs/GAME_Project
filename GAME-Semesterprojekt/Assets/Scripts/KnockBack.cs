@@ -11,7 +11,7 @@ public class KnockBack : MonoBehaviour
 
 
 
-    private float impulsStrength = 3500;
+    private float impulsStrength = 2500;
 
 
 
