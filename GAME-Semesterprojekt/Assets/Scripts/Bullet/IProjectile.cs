@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface IProjectile
 {
-    void Shoot();
+    void Shoot(GameObject player);
+    void Fly();
     void OnHit(GameObject hittedObject);
 }

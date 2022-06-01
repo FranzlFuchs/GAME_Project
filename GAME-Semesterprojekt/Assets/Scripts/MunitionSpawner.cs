@@ -5,7 +5,7 @@ using UnityEngine;
 public class MunitionSpawner : MonoBehaviour
 {
 
-    private float _spawnY;
+    private float _spawnY;   
     private float _spawnRangeXMax;
     private float _spawnRangeXMin;
     private float _spawnRangeZMin;
@@ -24,7 +24,9 @@ public class MunitionSpawner : MonoBehaviour
         _spawnRangeZMax = -10;
         _spawnOffset = 2;
         _spawnY = 3;
+     
         Invoke("SpawnRandomMunition", _spawnOffset);
+       
 
         Munition = Dictionary.GetComponent<MunitionDictionary>().MunitionList;
     }

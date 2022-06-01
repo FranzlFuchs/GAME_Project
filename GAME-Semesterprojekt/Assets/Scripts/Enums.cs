@@ -7,6 +7,7 @@ namespace Enums
     public enum BulletType
     {
         standard,
+        triple
 
     }
 }

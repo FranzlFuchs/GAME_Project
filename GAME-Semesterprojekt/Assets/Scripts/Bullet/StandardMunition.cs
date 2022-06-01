@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Enums;
 
-public class StandardMunition : MonoBehaviour
+public class StandardMunition : Munition
+
 {
-    // Start is called before the first frame update
-    void Start()
+    
+    public override void Spawn(Vector3 spawnPosition)
     {
-        
+        GameObject newMunition = Instantiate(gameObject, spawnPosition, gameObject.transform.rotation);
+
+        newMunition.gameObject.AddComponent<SpinAroundSelf>();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public override void PickUp()
     {
-        
+        Destroy(gameObject);
     }
 }

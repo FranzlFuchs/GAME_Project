@@ -2,34 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enums;
-public class Munition : MonoBehaviour, IMunition
+public abstract class Munition : MonoBehaviour, IMunition
 {
     public BulletType bulletType;
-    private float _ratioTimeBlink = 0.6f;
-    private float _blinkInterval;
-    private float _numBlinks = 5;
-    private Renderer _renderer;
     public float TimeToLive;
     public float SpawnIntervalNextMunition;
+    public Color AmmoMarkerColor;
 
+    protected float _ratioTimeBlink = 0.6f;
+    protected float _numBlinks = 5;
+
+    private float _blinkInterval;
+    private Renderer _renderer;
     void Start()
     {
+        Debug.Log("Start");
+
+
         _blinkInterval = ((TimeToLive - (TimeToLive * _ratioTimeBlink)) / _numBlinks) / 2;
         _renderer = GetComponent<Renderer>();
+        _renderer.enabled = true;
         StartCoroutine(DieAfterTime());
         StartCoroutine(Blink(_blinkInterval));
     }
-    public void Spawn(Vector3 spawnPosition)
-    {
-        GameObject newMunition = Instantiate(gameObject, spawnPosition, gameObject.transform.rotation);
-        newMunition.gameObject.AddComponent<SpinAroundSelf>();
-    }
+    public abstract void Spawn(Vector3 spawnPosition);
 
 
-    public void PickUp()
-    {
-        Destroy(gameObject);
-    }
+    public abstract void PickUp();
 
 
     private IEnumerator DieAfterTime()

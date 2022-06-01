@@ -46,8 +46,6 @@ public class PlayerShoot : MonoBehaviour
         if (HasAmmo)
         {
             Projectile.GetComponent<Projectile>().Shoot(gameObject);
-            ammoMarker.SetActive(false);
-            HasAmmo = false;
         }
     }
 
@@ -58,6 +56,9 @@ public class PlayerShoot : MonoBehaviour
         {
             HasAmmo = true;
             gameObject.GetComponent<PlayerShoot>().Projectile = FindObjectOfType<MunitionDictionary>().ProjectilesDictionary[munition.GetComponent<Munition>().bulletType];
+
+            SetAmmoMarkerColor(munition.GetComponent<Munition>().AmmoMarkerColor);
+
             ammoMarker.SetActive(true);
         }
 
@@ -73,6 +74,11 @@ public class PlayerShoot : MonoBehaviour
             Reload(collider.gameObject);
         }
 
+    }
+
+    void SetAmmoMarkerColor(Color color)
+    {
+        ammoMarker.gameObject.GetComponent<MeshRenderer>().material.color = color;
     }
 }
 

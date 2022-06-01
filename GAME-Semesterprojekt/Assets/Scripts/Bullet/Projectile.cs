@@ -2,35 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public abstract class Projectile : MonoBehaviour, IProjectile
 {
 
-    public float speed = 40;
+    public float speed;
     public float impulsStrength;
     public string PlayerOrigin;
+    public int charge;
 
-
-    public void Shoot(GameObject player)
-    {
-        PlayerOrigin = player.GetComponent<PlayerConfig>().playerNumber;
-        Instantiate(gameObject, player.transform.position, player.transform.rotation);
-    }
+    public abstract void Shoot(GameObject player);
+    public abstract void Fly();
+    public abstract void OnHit(GameObject hittedObject);
 
     void Update()
     {
-        transform.Translate(Vector3.forward * Time.deltaTime * speed);
+        Fly();
     }
 
-
-
-    public void OnHit(GameObject hittedObject)
-    {
-        Rigidbody otherRb = hittedObject.GetComponent<Rigidbody>();
-        otherRb.AddForce(gameObject.transform.forward * impulsStrength, ForceMode.Impulse);
-
-        Debug.Log("Hit");
-        Destroy(gameObject);
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -44,9 +32,7 @@ public class Projectile : MonoBehaviour
 
         if (other.CompareTag("TableWare"))
         {
-
             OnHit(other.gameObject);
-
         }
     }
 }
