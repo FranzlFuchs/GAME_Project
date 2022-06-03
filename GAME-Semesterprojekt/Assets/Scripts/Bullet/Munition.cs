@@ -10,7 +10,7 @@ public abstract class Munition : MonoBehaviour, IMunition
     public Color AmmoMarkerColor;
 
     protected float _ratioTimeBlink = 0.6f;
-    protected float _numBlinks = 5;
+    protected float _numBlinks = 15;
 
     private float _blinkInterval;
     private Renderer _renderer;

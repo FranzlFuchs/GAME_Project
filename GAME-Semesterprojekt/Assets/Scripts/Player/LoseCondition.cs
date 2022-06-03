@@ -5,19 +5,28 @@ using UnityEngine;
 public class LoseCondition : MonoBehaviour
 {
 
-    private float ybound = -30;
+
+    bool isAlive;
+
 
     void Start()
     {
+        isAlive = true;
 
     }
     void Update()
     {
-        if (transform.position.y < ybound)
+
+    }
+
+    void OnCollisionEnter(Collision collider)
+    {
+        if (collider.gameObject.CompareTag("Ground") && isAlive)
         {
             FindObjectOfType<GameManager>().PlayerDied(gameObject);
             gameObject.SetActive(false);
-        }
+            isAlive = false;
 
+        }
     }
 }

@@ -19,22 +19,21 @@ public class GameManager : MonoBehaviour
 
     public void SpawnPlayersFixed()
     {
-        GetComponent<PlayerSpawnPositions>().SpawnFixed();
+        PlayersAlive = GetComponent<PlayerSpawnPositions>().SpawnFixed();
         StartGame();
     }
 
     public void SpawnPlayersRandom()
     {
-        GetComponent<PlayerSpawnPositions>().SpawnRandom();
+        PlayersAlive = GetComponent<PlayerSpawnPositions>().SpawnRandom();
         StartGame();
     }
 
     public void StartGame()
-    {
-        PlayersAlive = Players;
+    {        
         StartGameFixedButton.gameObject.SetActive(false);
         StartGameRandomButton.gameObject.SetActive(false);
-        RestartGameButton.gameObject.SetActive(false);
+        RestartGameButton.gameObject.SetActive(true);
         winnerText.gameObject.SetActive(false);
         StartgameText.gameObject.SetActive(false);
         GameIsActive = true;
@@ -45,12 +44,16 @@ public class GameManager : MonoBehaviour
     }
 
     public void PlayerDied(GameObject playerDead)
-    {        
+    {
+        Debug.Log("Player " + playerDead.GetComponent<PlayerConfig>().playerName + " died");
+        Debug.Log("Players left :  " + PlayersAlive.Count);
         PlayersAlive.Remove(playerDead);
 
         if (PlayersAlive.Count == 1)
         {
             GameOver(PlayersAlive[0]);
+
+            Debug.Log("GAME OVER, Player" + PlayersAlive[0].GetComponent<PlayerConfig>().playerName + "won!");
         }
     }
 

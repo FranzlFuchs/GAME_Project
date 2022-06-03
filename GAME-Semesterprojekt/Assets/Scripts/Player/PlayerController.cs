@@ -7,7 +7,15 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem particleOnGo;
     public float verticalInput, rotationInput, viewY, viewX;
     // public float horizontalInput;
-    public float speed = 10, rotationSpeed = 300;
+    public float maxspeed, rotationSpeed = 300;
+
+    public ParticleSystem onHitParticles;
+
+
+    private float speed;
+
+    public float acceleration;
+
 
     //public GameObject projectilePrefab;
     // public GameObject ammoMarker;
@@ -22,6 +30,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        speed = 0;
+        acceleration = 25;
         Vforward = Vector3.forward;
         Vright = Vector3.right;
 
@@ -37,20 +47,37 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.GameIsActive)
         {
+            if (verticalInput == 0)
+            {
+                speed = 0;
+            }
+            else
+            {
+                if (speed < maxspeed)
+                {
+                    speed += acceleration * Time.deltaTime;
+
+                }
+                else
+                {
+                    speed = maxspeed;
+                }
+            }
+
             // Get inputs
             //horizontalInput = Input.GetAxis("Horizontal " + playerNumber);
             verticalInput = Input.GetAxis("Vertical " + playerNumber);
             viewX = Input.GetAxis("View X " + playerNumber);
             viewY = Input.GetAxis("View Y " + playerNumber);
 
-            if(verticalInput > 0)
+            if (verticalInput > 0)
             {
                 //particleOnGo.playbackSpeed = 0.2f;
                 particleOnGo.Play();
             }
-            if(verticalInput == 0)
+            if (verticalInput == 0)
             {
-                //particleOnGo.Stop();
+                particleOnGo.Stop();
             }
             //shoot = Input.GetAxis("Fire " + playerNumber);
             //verticalInput = shoot;
@@ -70,6 +97,6 @@ public class PlayerController : MonoBehaviour
     }
 
 
- 
+
 }
 

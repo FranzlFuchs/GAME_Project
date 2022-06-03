@@ -102,6 +102,7 @@ MonoBehaviour:
   impulsStrength: 8000
   PlayerOrigin: 1
   Charge: 1
+  onHitParticles: {fileID: 1327716735663538683, guid: 6cbd2646ef581864dac8147013ae935b, type: 3}
 --- !u!111 &4552040974926773104
 Animation:
   m_ObjectHideFlags: 0

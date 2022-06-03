@@ -8,24 +8,25 @@ public class KnockBack : MonoBehaviour
     // Start is called before the first frame update
 
 
+    private float impulsStrength;
 
-
-
-    private float impulsStrength = 2500;
-
-
+    void Start()
+    {
+        impulsStrength = 8000;
+    }
 
     private void OnCollisionEnter(Collision other)
     {
 
         if (other.gameObject.CompareTag("Player"))
         {
+            Debug.Log("BOUNCE");
             Rigidbody otherRb = other.gameObject.GetComponent<Rigidbody>();
 
             Vector3 direction = (transform.position - other.transform.position).normalized;
 
             otherRb.AddForce(direction * impulsStrength, ForceMode.Impulse);
-
+            Debug.Log(impulsStrength);
         }
     }
 }

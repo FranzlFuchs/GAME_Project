@@ -22,10 +22,13 @@ public abstract class Projectile : MonoBehaviour, IProjectile
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.CompareTag("Player"))
         {
             if (PlayerOrigin != other.gameObject.GetComponent<PlayerConfig>().playerNumber)
             {
+                other.gameObject.GetComponent<PlayerController>().onHitParticles.Play();
+                other.gameObject.GetComponent<PlayerController>().onHitParticles.transform.position = gameObject.transform.position;
                 OnHit(other.gameObject);
             }
         }
