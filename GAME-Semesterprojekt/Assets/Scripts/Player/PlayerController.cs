@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    //public float shoot;
+    public ParticleSystem particleOnGo;
     public float verticalInput, rotationInput, viewY, viewX;
     // public float horizontalInput;
     public float speed = 10, rotationSpeed = 300;
@@ -43,7 +43,15 @@ public class PlayerController : MonoBehaviour
             viewX = Input.GetAxis("View X " + playerNumber);
             viewY = Input.GetAxis("View Y " + playerNumber);
 
-
+            if(verticalInput > 0)
+            {
+                //particleOnGo.playbackSpeed = 0.2f;
+                particleOnGo.Play();
+            }
+            if(verticalInput == 0)
+            {
+                //particleOnGo.Stop();
+            }
             //shoot = Input.GetAxis("Fire " + playerNumber);
             //verticalInput = shoot;
 
