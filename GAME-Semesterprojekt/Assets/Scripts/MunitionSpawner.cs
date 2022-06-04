@@ -5,7 +5,7 @@ using UnityEngine;
 public class MunitionSpawner : MonoBehaviour
 {
 
-    private float _spawnY;   
+    private float _spawnY;
     private float _spawnRangeXMax;
     private float _spawnRangeXMin;
     private float _spawnRangeZMin;
@@ -24,9 +24,9 @@ public class MunitionSpawner : MonoBehaviour
         _spawnRangeZMax = -10;
         _spawnOffset = 2;
         _spawnY = 3;
-     
+
         Invoke("SpawnRandomMunition", _spawnOffset);
-       
+
 
         Munition = Dictionary.GetComponent<MunitionDictionary>().MunitionList;
     }
@@ -41,13 +41,13 @@ public class MunitionSpawner : MonoBehaviour
         int ranPosMunition = Random.Range(0, Munition.Count);
 
         //RECURSION!
-        Munition[ranPosMunition].GetComponent<Munition>().Spawn(RandomSpawnPosition());
+        if (GameManager.GameIsActive)
+        {
+            Munition[ranPosMunition].GetComponent<Munition>().Spawn(RandomSpawnPosition());
+        }
 
 
         //Abbruchbedingung
-        if (GameManager.GameIsActive)
-        {
-            Invoke("SpawnRandomMunition", Random.Range(0, Munition[ranPosMunition].GetComponent<Munition>().SpawnIntervalNextMunition));
-        }
+        Invoke("SpawnRandomMunition", Random.Range(0, Munition[ranPosMunition].GetComponent<Munition>().SpawnIntervalNextMunition));
     }
 }

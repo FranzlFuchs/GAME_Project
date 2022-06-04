@@ -12,8 +12,7 @@ public class GameManager : MonoBehaviour
     public Button StartGameFixedButton;
     public Button RestartGameButton;
     public PlayerSpawnPositions PlayerSpawner;
-    public TextMeshProUGUI winnerText;
-    public TextMeshProUGUI StartgameText;
+    public TextMeshProUGUI winnerText;   
     public List<GameObject> Players;
     private List<GameObject> PlayersAlive;
 
@@ -35,7 +34,7 @@ public class GameManager : MonoBehaviour
         StartGameRandomButton.gameObject.SetActive(false);
         RestartGameButton.gameObject.SetActive(true);
         winnerText.gameObject.SetActive(false);
-        StartgameText.gameObject.SetActive(false);
+        
         GameIsActive = true;
     }
     public void RestartGame()
