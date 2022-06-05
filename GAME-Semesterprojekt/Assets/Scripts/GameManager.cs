@@ -12,9 +12,20 @@ public class GameManager : MonoBehaviour
     public Button StartGameFixedButton;
     public Button RestartGameButton;
     public PlayerSpawnPositions PlayerSpawner;
-    public TextMeshProUGUI winnerText;   
+    public TextMeshProUGUI winnerText;
     public List<GameObject> Players;
     private List<GameObject> PlayersAlive;
+
+    public ParticleSystem WinEffect;
+
+    //BOUNDS FOR FIREWORK
+
+    float xBoundLeft = -12.53f;
+    float xBoundRight = 7.2f;
+    float zBoundLeft = -30f;
+    float zBoundRight = -10f;
+    float y = 3.5f;
+
 
     public void SpawnPlayersFixed()
     {
@@ -29,12 +40,12 @@ public class GameManager : MonoBehaviour
     }
 
     public void StartGame()
-    {        
+    {
         StartGameFixedButton.gameObject.SetActive(false);
         StartGameRandomButton.gameObject.SetActive(false);
         RestartGameButton.gameObject.SetActive(true);
         winnerText.gameObject.SetActive(false);
-        
+
         GameIsActive = true;
     }
     public void RestartGame()
@@ -59,9 +70,19 @@ public class GameManager : MonoBehaviour
     public void GameOver(GameObject winner)
     {
         GameIsActive = false;
-
         winnerText.text = winner.GetComponent<PlayerConfig>().playerName + " won!";
         RestartGameButton.gameObject.SetActive(true);
         winnerText.gameObject.SetActive(true);
+        for (int i = 0; i < 80; i++)
+        {
+            StartCoroutine(ShootFireWork());
+        }
+    }
+
+    public IEnumerator ShootFireWork()
+    {
+        yield return new WaitForSeconds(Random.Range(0.2f,2));
+        WinEffect.transform.position = new Vector3(Random.Range(xBoundLeft, xBoundRight), y, Random.Range(zBoundLeft, zBoundRight));
+        WinEffect.Play();
     }
 }
