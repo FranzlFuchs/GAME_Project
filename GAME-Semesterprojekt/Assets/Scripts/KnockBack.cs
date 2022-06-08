@@ -20,13 +20,13 @@ public class KnockBack : MonoBehaviour
 
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("BOUNCE");
+          
             Rigidbody otherRb = other.gameObject.GetComponent<Rigidbody>();
 
             Vector3 direction = (transform.position - other.transform.position).normalized;
 
             otherRb.AddForce(direction * impulsStrength, ForceMode.Impulse);
-            Debug.Log(impulsStrength);
+            
         }
     }
 }

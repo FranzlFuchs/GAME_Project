@@ -49,6 +49,7 @@ public class PlayerShoot : MonoBehaviour
             if (Charge > 0)
             {
                 Projectile.GetComponent<Projectile>().Shoot(gameObject);
+                GetComponent<SoundEffects>().PlayShoot();
                 Charge--;
 
             }

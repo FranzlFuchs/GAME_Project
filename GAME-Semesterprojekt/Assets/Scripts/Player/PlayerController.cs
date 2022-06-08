@@ -10,9 +10,11 @@ public class PlayerController : MonoBehaviour
     public float maxspeed, rotationSpeed = 300;
 
     public ParticleSystem onHitParticles;
+    public ParticleSystem freezeParticles;
 
 
     private float speed;
+    public bool frozen;
 
     public float acceleration;
 
@@ -34,6 +36,7 @@ public class PlayerController : MonoBehaviour
         acceleration = 25;
         Vforward = Vector3.forward;
         Vright = Vector3.right;
+        frozen = false;
 
         playerRb = GetComponent<Rigidbody>();
         playerNumber = GetComponent<PlayerConfig>().playerNumber;
@@ -45,7 +48,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.GameIsActive)
+        if (GameManager.GameIsActive && !frozen)
         {
             if (verticalInput == 0)
             {
@@ -94,6 +97,21 @@ public class PlayerController : MonoBehaviour
                 transform.forward = new Vector3(viewX, 0, viewY);
             }
         }
+    }
+
+
+    public void Freeze(float seconds)
+    {
+        frozen = true;
+        freezeParticles.Play();
+        StartCoroutine(UnFreeze(seconds));
+    }
+
+    IEnumerator UnFreeze(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        freezeParticles.Stop();
+        frozen = false;
     }
 
 

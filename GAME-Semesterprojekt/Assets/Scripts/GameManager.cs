@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public Button RestartGameButton;
     public PlayerSpawnPositions PlayerSpawner;
     public TextMeshProUGUI winnerText;
+    public Text infotext;
     public List<GameObject> Players;
     private List<GameObject> PlayersAlive;
 
@@ -41,11 +42,12 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        FindObjectOfType<Camera>().GetComponent<AudioSource>().Play();
         StartGameFixedButton.gameObject.SetActive(false);
         StartGameRandomButton.gameObject.SetActive(false);
         RestartGameButton.gameObject.SetActive(true);
         winnerText.gameObject.SetActive(false);
-
+        infotext.text = "";
         GameIsActive = true;
     }
     public void RestartGame()
@@ -55,22 +57,25 @@ public class GameManager : MonoBehaviour
 
     public void PlayerDied(GameObject playerDead)
     {
-        Debug.Log("Player " + playerDead.GetComponent<PlayerConfig>().playerName + " died");
-        Debug.Log("Players left :  " + PlayersAlive.Count);
+
         PlayersAlive.Remove(playerDead);
+        infotext.text = "Player " + playerDead.GetComponent<PlayerConfig>().playerNumber + " died";
+        infotext.enabled = true;
+        StartCoroutine(FadeInfoTextOut());
 
         if (PlayersAlive.Count == 1)
         {
-            GameOver(PlayersAlive[0]);
-
-            Debug.Log("GAME OVER, Player" + PlayersAlive[0].GetComponent<PlayerConfig>().playerName + "won!");
+            GameOver(PlayersAlive[0]);           
         }
     }
 
     public void GameOver(GameObject winner)
     {
+
+        FindObjectOfType<Camera>().GetComponent<AudioSource>().Stop();
+
         GameIsActive = false;
-        winnerText.text = winner.GetComponent<PlayerConfig>().playerName + " won!";
+        winnerText.text = "Player " + winner.GetComponent<PlayerConfig>().playerNumber + " won!";
         RestartGameButton.gameObject.SetActive(true);
         winnerText.gameObject.SetActive(true);
         for (int i = 0; i < 80; i++)
@@ -81,8 +86,16 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator ShootFireWork()
     {
-        yield return new WaitForSeconds(Random.Range(0.2f,2));
+        yield return new WaitForSeconds(Random.Range(0.2f, 2));
         WinEffect.transform.position = new Vector3(Random.Range(xBoundLeft, xBoundRight), y, Random.Range(zBoundLeft, zBoundRight));
         WinEffect.Play();
     }
+
+    IEnumerator FadeInfoTextOut(){
+        yield return new WaitForSeconds(3);
+        infotext.enabled = false;
+    }
+
+
+    
 }

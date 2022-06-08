@@ -7,7 +7,8 @@ namespace Enums
     public enum BulletType
     {
         standard,
-        triple
+        triple,
+        freeze
         
 
     }

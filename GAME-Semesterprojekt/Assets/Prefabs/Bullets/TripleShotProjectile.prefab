@@ -130,6 +130,8 @@ MonoBehaviour:
   impulsStrength: 3000
   PlayerOrigin: 1
   Charge: 3
+  hitSound: {fileID: 8300000, guid: 8401456349c492a489ed90469e317e43, type: 3}
+  source: {fileID: 0}
 --- !u!54 &4629873446811322258
 Rigidbody:
   m_ObjectHideFlags: 0
