@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public PlayerSpawnPositions PlayerSpawner;
     public TextMeshProUGUI winnerText;
     public Text infotext;
+    public Image tutorialImage;
     public List<GameObject> Players;
     private List<GameObject> PlayersAlive;
 
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour
         winnerText.gameObject.SetActive(false);
         infotext.text = "";
         GameIsActive = true;
+        tutorialImage.enabled = false;
     }
     public void RestartGame()
     {
