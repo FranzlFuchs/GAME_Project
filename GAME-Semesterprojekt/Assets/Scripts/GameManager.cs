@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
 
         if (PlayersAlive.Count == 1)
         {
-            GameOver(PlayersAlive[0]);           
+            GameOver(PlayersAlive[0]);
         }
     }
 
@@ -81,6 +81,10 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < 80; i++)
         {
             StartCoroutine(ShootFireWork());
+            if (i % 10 == 0)
+            {
+                GetComponent<SoundEffects>().PlayHit();
+            }
         }
     }
 
@@ -91,11 +95,12 @@ public class GameManager : MonoBehaviour
         WinEffect.Play();
     }
 
-    IEnumerator FadeInfoTextOut(){
+    IEnumerator FadeInfoTextOut()
+    {
         yield return new WaitForSeconds(3);
         infotext.enabled = false;
     }
 
 
-    
+
 }

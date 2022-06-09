@@ -124,12 +124,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 583a900d88df8244e9d485a8c51f3fd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  speed: 25
   impulsStrength: 200
   PlayerOrigin: 
   Charge: 1
-  hitSound: {fileID: 8300000, guid: 8401456349c492a489ed90469e317e43, type: 3}
-  source: {fileID: 0}
 --- !u!135 &728480227924811832
 SphereCollider:
   m_ObjectHideFlags: 0

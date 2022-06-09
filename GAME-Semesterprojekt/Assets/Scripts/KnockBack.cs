@@ -12,7 +12,7 @@ public class KnockBack : MonoBehaviour
 
     void Start()
     {
-        impulsStrength = 8000;
+        impulsStrength = 4000;
     }
 
     private void OnCollisionEnter(Collision other)

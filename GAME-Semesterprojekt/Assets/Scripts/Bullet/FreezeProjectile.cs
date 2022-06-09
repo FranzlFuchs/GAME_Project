@@ -10,7 +10,7 @@ public class FreezeProjectile : Projectile
 
     void Start()
     {
-        freezeCountdown = 1.0f;
+        freezeCountdown = 3.0f;
     }
 
     public override void Fly()

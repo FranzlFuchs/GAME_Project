@@ -113,7 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletType: 2
   TimeToLive: 3
-  SpawnIntervalNextMunition: 10
+  SpawnIntervalNextMunition: 5
   AmmoMarkerColor: {r: 0.07826612, g: 0.0744927, b: 0.5849056, a: 1}
 --- !u!135 &1356777938457731375
 SphereCollider:

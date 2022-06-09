@@ -99,11 +99,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 40
-  impulsStrength: 8000
+  impulsStrength: 17500
   PlayerOrigin: 1
   Charge: 1
-  hitSound: {fileID: 8300000, guid: 8401456349c492a489ed90469e317e43, type: 3}
-  source: {fileID: 0}
 --- !u!111 &4552040974926773104
 Animation:
   m_ObjectHideFlags: 0

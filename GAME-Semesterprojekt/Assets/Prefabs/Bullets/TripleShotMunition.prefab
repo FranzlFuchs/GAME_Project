@@ -126,5 +126,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletType: 1
   TimeToLive: 6
-  SpawnIntervalNextMunition: 6
+  SpawnIntervalNextMunition: 4
   AmmoMarkerColor: {r: 0.74781066, g: 0.764151, b: 0.09011213, a: 1}
